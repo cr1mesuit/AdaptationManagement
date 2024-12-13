@@ -1,0 +1,78 @@
+﻿<Window x:Class="AdaptationManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управление адаптацией" Height="600" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Адаптационные модули">
+                <StackPanel Margin="5">
+                    <TextBlock Text="Фильтр по должности:" Margin="0,0,0,5" />
+                    <ComboBox x:Name="PositionFilter" Width="200" Margin="-585,0,0,5"/>
+
+                    <DataGrid x:Name="ModulesGrid" AutoGenerateColumns="False" Margin="0,10,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Название" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Разработчики" Binding="{Binding Developers}" />
+                            <DataGridTextColumn Header="Согласованты" Binding="{Binding Approvers}" />
+                            <DataGridTextColumn Header="Должности" Binding="{Binding Positions}" />
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Button Content="Создать модуль" Width="97" Margin="0,0,10,0" Click="CreateModule_Click" />
+                        <Button Content="Отправить на согласование" Width="163" Click="SendApproval_Click" />
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Конструктор">
+                <StackPanel Margin="5"  Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <TextBlock Text="Сотрудник:" />
+                    <ComboBox x:Name="EmployeeSelector" Width="300" Margin="0,5,0,10" />
+
+                    <TextBlock Text="Отдел:" />
+                    <ComboBox x:Name="DepartmentSelector" Width="300" Margin="0,5,0,10" />
+
+                    <TextBlock Text="Должность:" />
+                    <ComboBox x:Name="PositionSelector" Width="300" Margin="0,5,0,10" />
+
+                    <TextBlock Text="Модули:" Margin="0,10,0,5" />
+                    <ItemsControl x:Name="ModulesPanel" Margin="0,5,0,10">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10">
+                                    <TextBlock Text="{Binding ModuleName}" ToolTip="{Binding ModuleDetails}" />
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <TextBlock Text="Выберите наставника:" />
+                    <ListBox x:Name="MentorSelector" SelectionMode="Multiple" Width="300" Margin="0,5,0,10" />
+
+                    <Button Content="Сформировать программу" Width="200" Click="GenerateProgram_Click" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Анализ мероприятий">
+                <StackPanel Margin="5">
+                    <TextBlock Text="Фильтр по должности и отделу:" />
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,10">
+                        <ComboBox x:Name="AnalysisPositionFilter" Width="200" Margin="0,0,10,0" />
+                        <ComboBox x:Name="AnalysisDepartmentFilter" Width="200" />
+                    </StackPanel>
+
+                    <DataGrid x:Name="AnalysisGrid" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Ошибки" Binding="{Binding Errors}" />
+                            <DataGridTextColumn Header="% выполнения" Binding="{Binding CompletionRate}" />
+                            <DataGridTextColumn Header="Трудоустройство" Binding="{Binding Employment}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <TextBlock Text="Диаграммы:" Margin="0,10,0,5" />
+                    <ItemsControl x:Name="ChartsContainer" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

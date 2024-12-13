@@ -1,0 +1,28 @@
+﻿<Window x:Class="AdaptationManagement.CreateModuleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Создание модуля" Height="350" Width="400">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Название модуля:" />
+            <TextBox x:Name="ModuleNameTextBox" Margin="0,0,0,10" />
+
+            <TextBlock Text="Разработчики:" />
+            <TextBox x:Name="DevelopersTextBox" Margin="0,0,0,10" />
+
+            <TextBlock Text="Согласованты:" />
+            <TextBox x:Name="ApproversTextBox" Margin="0,0,0,10" />
+
+            <TextBlock Text="Должность:" />
+            <TextBox x:Name="PositionTextBox" Margin="0,0,0,10" />
+
+            <TextBlock Text="Срок выполнения:" />
+            <DatePicker x:Name="DeadlineDatePicker" Margin="0,0,0,10" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                <Button Content="Создать" Width="80" Click="CreateButton_Click" />
+                <Button Content="Отмена" Width="80" Click="CancelButton_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
